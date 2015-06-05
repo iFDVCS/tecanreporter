@@ -1,0 +1,45 @@
+Cell = "Yeast"
+Data = "Absorbance"
+Strain = "x567"
+Comments = "Oversalted"
+Time = "all points"
+Img = "/pathway/example.png"
+Date = "5,6,2015"
+
+# hypothetical values for the variables created before
+
+organism = Cell
+phenomena = Data
+strain = Strain
+conditions = Comments
+time = Time
+img = Img
+timedate = Date
+
+# assigning the variables made through jinja2 in HTML to variables created before
+
+
+import jinja2
+import os
+
+loader = jinja2.FileSystemLoader (os.getcwd())
+# creating the loader of templates and telling it to find templates in th current working directory
+
+loader
+# running the loader
+
+jenv = jinja2.Environment(loader = loader, trim_blocks=True, lstrip_blocks=True)
+# creating the jinja2 environment where we store and modify variables for rending the template
+
+jenv
+# running the environment 
+
+template = jenv.get_template('novoovovovoo.htm')
+# calling the template form the current working directory
+
+template
+# running it and seeing it as an object
+
+print template.render(organism = Cell, timedate = Date, strain = Strain, phenomena = Data, time = Time, conditions = Comments, img = Img)
+
+# rendering the template with new values
