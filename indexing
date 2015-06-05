@@ -1,0 +1,89 @@
+import csv
+
+
+#using this to make fake functions
+path = "C:/Users/user/Documents/IPython Notebooks/amoxicillin.csv"
+
+
+
+#read the csv file the user selects in the interface
+def read(arg):
+    with open(arg,'rb') as csvfile:        
+        data = []
+        for row in csvfile.readlines():
+            data.append(row)
+#the file is read and the data is returned
+        return data
+    
+    
+    
+#the file given by the user is read as data
+data = read(path)
+
+
+#To create a function for user to select the type of data from the table.
+#To read data of two different tables used if else condition.
+def types(data,arg):
+    if arg == "absorbance":
+#Assign variable to read the data
+        abs_data = data[63:158]
+#Return the data as variable 
+        return abs_data
+    elif arg == "fluoroscence":
+#Assign variable to read the data
+        fls_data = data[1723:1818]
+#Return the data as variable
+        return fls_data
+    
+    
+    
+#For the user to select the time interval from the table
+#Time lapse is the time interval selected by the user for analysis.
+def get_time(data,arg1,arg2):
+#User can select the time lapse and reads table for the selected time interval.
+    time_row = data[61].split(',')[arg1:arg2+1]
+#returns the time of the row that is selected by the user
+    return time_row
+    
+    
+    
+    
+#To create a function for user to select the type of data from the table.
+#To read data that gives wavelengthof two different types from the table by useing if else condition.
+def get_wavelength(data,arg):
+    if arg == "absorbance":
+#Assign variable to read the data
+        abs_wl = data[34].split(',')[4]
+#Return the data as variable
+        return abs_wl
+    elif arg == "fluoroscence":
+#Assign variable to read the data
+        fls_wl = data[46].split(',')[4]  
+#Return the data as variable
+        return fls_wl  
+
+
+    
+def well_ID(data,arg):
+    if arg == "absorbance":
+        for row in data:
+            if 'Time [s]' in row:
+                time_row = row[1:+1]
+                fieldnames = row[1:+1]
+                for x in range(len(time_row)):    
+                    time_row[x] = float(time_row[x].replace(',','.'))
+                    fieldnames[x] = float(fieldnames[x].replace(',','.'))
+                    break
+                    fielnames.insert(0,'well_ID')
+                    fieldnames.append('Others')
+for row in data:
+        for time in time_row:
+            if 'A' in row['well_ID']:
+                continue
+                if 'B' in row['well_ID'][0] or\
+                'C' in row['well_ID'][0] or\
+                'D' in row['well_ID'][0] :
+                    list['condition'].append(row['well_ID'][0])
+                    list['subj'].append(row['well_ID'])
+                    list['time'].append(time)
+                    list['value'].append(float(row[time].replace(',','.')))
