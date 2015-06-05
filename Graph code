@@ -1,9 +1,26 @@
-def makegraph (time, OD, types):
-    fig
-plt.title("Growth curve of bacterias")
-plt.plot('time','OD', 'bo')
-plt.xlabel ('Time (s)', color = "072b57"" )
-plt.ylabel ('Optical density', color= "072b57")
-plt.safe
+#Now we need to have graphs!
+#First our libraries
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+
+#variablex =[1,2,3,4,5,6]
+#variabley = [[1,2,3,4,5,6],[7,8,9,10,11,12],[13,14,15,16,17,18]]
+
+
+# Time and absorbance are the arguments that need to be provided from the indexing part.
+def make (time,absorbance): # A function was created
+	time = np.array(time) 
+	df = pd.DataFrame(absorbance , index=[i for i in range(len(absorbance))])
+	df = df.transpose() # Transpose index and columns
+	df = df.set_index(time)
+
+	plt.plot(df)
+	# plt.show()
+	plt.savefig('plot.png') # the plt was saved as a png extension
+
+
+
 
 
