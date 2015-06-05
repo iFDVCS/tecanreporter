@@ -1,0 +1,9 @@
+def makegraph (time, OD, types):
+    fig
+plt.title("Growth curve of bacterias")
+plt.plot('time','OD', 'bo')
+plt.xlabel ('Time (s)', color = "072b57"" )
+plt.ylabel ('Optical density', color= "072b57")
+plt.safe
+
+
