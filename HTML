@@ -8,7 +8,8 @@ Data = "Absorbance"
 Strain = "x567"
 Comments = "Oversalted"
 Time = "all points"
-Img == "/pathway/example.png"
+Img = "/pathway/example.png"
+Date = "5,6,2015"
 
 # left variables are from input interface and results made equal to variables set in HTML through jinja2
 #to run the program they need to be set before
@@ -21,6 +22,7 @@ Strain == strain
 Comments == conditions
 Time == time
 Img == img
+Date == datetime
 
 
 
@@ -35,15 +37,15 @@ jenv = jinja2.Environment(loader = loader, trim_blocks=True, lstrip_blocks=True)
 jenv
 #to run it
 template = jenv.get_template('novoovovovoo.htm')
-# now user the environment to import my template
+# now use the environment to import my template
 template
 #run it, its only an object
-print template.render(organism = Cell, strain = Strain, phenomena = Data, time = Time, conditions = Comments, img = Img)
+print template.render(organism = Cell, timedate = Date, strain = Strain, phenomena = Data, time = Time, conditions = Comments, img = Img)
 # use render to edit the values of my template's variables
 #variables were made in HTML editor by adding {{}} as jinja2 recognizes it
 
 #the next part is copied run rendered template
-# certain parts of it are changed according to the values of mariano and romina's values
+# certain parts of it are changed according to values of Mariano's and ROmina's variables
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -64,15 +66,27 @@ that converts your TECAN data into a visually meaningful plot.</p> </i> </h3><ce
 
 
 
- <font color = "FFA500"><strong><p style="text-align:center;">Type of the organism observed in this measurment is Yeast , the strain  X567. </p></strong></font>
+ <font color = "FFA500"><strong><p style="text-align:center;">Type of the organism observed in this measurment is Yeast, the strain  x567. </p></strong></font>
  
  <p style="text-align:center;"><h3> * </p></h3>
-al points</strong></font>
+
+<font color = "FFA500"><strong><p style="text-align:center;">Measured phenomena is Absorbance. </p></strong></font>
 
 <p style="text-align:center;"><h3> * </p></h3>
 
+<font color = "FFA500"><strong><p style="text-align:center;">Conditions applied description: Oversalted </p></strong></font>
 
-<font color = "FFA500"><strong><p style="text-align:center;">Plotted data: <center><img src="/pathway/example.png" align="middle"><center>pathway.needed </p></strong></font>
+<p style="text-align:center;"><h3> * </p></h3>
+
+<font color = "FFA500"><strong><p style="text-align:center;">Time points chosen were all points </p></strong></font>
+
+<p style="text-align:center;"><h3> * </p></h3>
+
+<font color = "FFA500"><strong><p style="text-align:center;">Date and time of the measurmenent: 5,6,2015  </p></strong></font>
+
+<p style="text-align:center;"><h3> * </p></h3>
+
+<font color = "FFA500"><strong><p style="text-align:center;">Plotted data: <center><img src="/pathway/example.png" align="middle"><center>{{img}} </p></strong></font>
 
 <p style="text-align:center;"><h3> * </p></h3>
 
@@ -84,5 +98,4 @@ al points</strong></font>
 
 </body>
 </html>
-In [15]:
 
