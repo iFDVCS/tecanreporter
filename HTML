@@ -1,12 +1,49 @@
+
+
+#hipothetically set values gotten from Mariano and Romina
+
+
+Cell = "Yeast"
+Data = "Absorbance"
+Strain = "x567"
+Comments = "Oversalted"
+Time = "all points"
+Img == "/pathway/example.png"
+
+# left variables are from input interface and results made equal to variables set in HTML through jinja2
+#to run the program they need to be set before
+
+
+
+Cell == organism
+Data == phenomena
+Strain == strain
+Comments == conditions
+Time == time
+Img == img
+
+
+
 import jinja2
 import os
 loader = jinja2.FileSystemLoader (os.getcwd())
+#to create a loader that will load the template from the current working directory
 loader
+#loader run
 jenv = jinja2.Environment(loader = loader, trim_blocks=True, lstrip_blocks=True)
+# to create environment where all the stuff is put
 jenv
+#to run it
 template = jenv.get_template('novoovovovoo.htm')
+# now user the environment to import my template
 template
-print template.render(organism = "bacteria", strain = "Y456", phenomena = "fluorescence", time = "a1. a2", conditions = "normal", timedate = "5/6/2015", img = "pathway.needed")
+#run it, its only an object
+print template.render(organism = Cell, strain = Strain, phenomena = Data, time = Time, conditions = Comments, img = Img)
+# use render to edit the values of my template's variables
+#variables were made in HTML editor by adding {{}} as jinja2 recognizes it
+
+#the next part is copied run rendered template
+# certain parts of it are changed according to the values of mariano and romina's values
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -27,27 +64,15 @@ that converts your TECAN data into a visually meaningful plot.</p> </i> </h3><ce
 
 
 
- <font color = "FFA500"><strong><p style="text-align:center;">Type of the organism observed in this measurment is bacteria , the strain  Y456. </p></strong></font>
+ <font color = "FFA500"><strong><p style="text-align:center;">Type of the organism observed in this measurment is Yeast , the strain  X567. </p></strong></font>
  
  <p style="text-align:center;"><h3> * </p></h3>
-
-<font color = "FFA500"><strong><p style="text-align:center;">Measured phenomena is fluorescence. </p></strong></font>
-
-<p style="text-align:center;"><h3> * </p></h3>
-
-<font color = "FFA500"><strong><p style="text-align:center;">Conditions applied description: normal </p></strong></font>
+al points</strong></font>
 
 <p style="text-align:center;"><h3> * </p></h3>
 
-<font color = "FFA500"><strong><p style="text-align:center;">Time points chosen were a1. a2 </p></strong></font>
 
-<p style="text-align:center;"><h3> * </p></h3>
-
-<font color = "FFA500"><strong><p style="text-align:center;">Date and time of the measurment: 5/6/2015 </p></strong></font>
-
-<p style="text-align:center;"><h3> * </p></h3>
-
-<font color = "FFA500"><strong><p style="text-align:center;">Plotted data: <center><img src="pathway.needed" align="middle"><center>pathway.needed </p></strong></font>
+<font color = "FFA500"><strong><p style="text-align:center;">Plotted data: <center><img src="/pathway/example.png" align="middle"><center>pathway.needed </p></strong></font>
 
 <p style="text-align:center;"><h3> * </p></h3>
 
