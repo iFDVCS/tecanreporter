@@ -40,6 +40,11 @@ template = jenv.get_template('novoovovovoo.htm')
 template
 # running it and seeing it as an object
 
-print template.render(organism = Cell, timedate = Date, strain = Strain, phenomena = Data, time = Time, conditions = Comments, img = Img)
+output = template.render(organism = Cell, timedate = Date, strain = Strain, phenomena = Data, time = Time, conditions = Comments, img = Img)
 
 # rendering the template with new values
+
+with open("my_new_file.html", "wb") as fh:
+    fh.write(output)
+    
+    #how to save the file was added after the deadline
